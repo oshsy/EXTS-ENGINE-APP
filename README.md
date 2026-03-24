@@ -1,6 +1,6 @@
-# EXTS-ENGINE (V1.0_BETA)
+# EXTS-ENGINE
 
-**EXTS ENGINE APP** adalah utilitas berbasis root untuk manajemen resource hardware secara manual dan otomatis. Menggunakan *Logic Bot* untuk mengatur profil performa, resolusi, dan limitasi sistem berdasarkan aktivitas pengguna.
+**EXTS ENGINE APP** adalah utilitas berbasis no root dan root untuk manajemen resource hardware secara manual dan otomatis. Menggunakan *Logic Bot* untuk mengatur profil performa, resolusi, dan limitasi sistem berdasarkan aktivitas pengguna.
 
 ---
 
