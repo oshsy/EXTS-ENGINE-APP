@@ -14,14 +14,16 @@
 8. **Blokir Aplikasi Blacklist:** Memaksa aplikasi yang di-blacklist tetap diam dan tidak berjalan.
 9. **Nonaktifkan Sistem Sensor:** Mematikan kamera, mic, giroskop, kompas, untuk privasi total.
 
+10. **Atur Resolusi Manual:** Mengedit resolusi layar dari normal hingga grafik buram/low demi FPS tinggi.
+11. **Paksa Refresh Rate Manual:** Mengatur Hz layar sesuai keinginan dan kemampuan hardware.
+12. **Pilih Driver Grafis Manual:** Mengatur driver grafis khusus untuk aplikasi di whitelist guna performa maksimal.
+
+
 ### Tweaks & Hardware (Root Required)
 
-10. **Tanpa Batasan Thermal:** Melepaskan batas suhu hardware untuk performa tanpa throttling.
-11. **Mode CPU Performa Tinggi:** Memaksa frekuensi CPU ke titik tertinggi tanpa turun.
-12. **Mode GPU Performa Tinggi:** Memaksa frekuensi GPU ke titik tertinggi tanpa turun.
-13. **Atur Resolusi Manual:** Mengedit resolusi layar dari normal hingga grafik buram/low demi FPS tinggi.
-14. **Paksa Refresh Rate Manual:** Mengatur Hz layar sesuai keinginan dan kemampuan hardware.
-15. **Pilih Driver Grafis Manual:** Mengatur driver grafis khusus untuk aplikasi di whitelist guna performa maksimal.
+13. **Tanpa Batasan Thermal:** Melepaskan batas suhu hardware untuk performa tanpa throttling.
+14. **Mode CPU Performa Tinggi:** Memaksa frekuensi CPU ke titik tertinggi tanpa turun.
+15. **Mode GPU Performa Tinggi:** Memaksa frekuensi GPU ke titik tertinggi tanpa turun.
 
 ---
 
