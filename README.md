@@ -28,4 +28,4 @@
 ---
 
 ### ⚠️ Disclaimer
-**RZD PROJECT ID** tidak bertanggung jawab atas kerusakan hardware, overheat, atau bootloop. Penggunaan beberapa fitur hingga fitur **Tanpa Batasan Thermal** dan **Mode Extreme** berisiko tinggi. **Use at your own risk!**
+**Developer** tidak bertanggung jawab atas kerusakan hardware, overheat, atau bootloop. Penggunaan beberapa fitur hingga fitur **Tanpa Batasan Thermal** dan **Mode Extreme** berisiko tinggi. **Use at your own risk!**
