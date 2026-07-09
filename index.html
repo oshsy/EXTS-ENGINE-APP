@@ -3,115 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXTS ENGINE - Official Landing Page</title>
+    <title>EXTS ENGINE | Android Utility</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* AOSP Minimalist Design System */
         body {
-            background-color: #08080a;
-            color: #cbd5e1;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #ffffff;
+            color: #202124;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
-            padding: 20px;
+            padding: 24px;
+            margin: 0;
         }
-        /* Efek Grid Cyberpunk */
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(0, 255, 102, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0, 255, 102, 0.02) 1px, transparent 1px);
-            background-size: 25px 25px; z-index: -1;
+        .container {
+            max-width: 680px;
+            margin: 60px auto;
+            padding: 0 16px;
         }
-        .container { max-width: 800px; margin: 40px auto; background: rgba(15, 15, 20, 0.9); padding: 30px; border: 1px solid #00ff66; border-radius: 8px; box-shadow: 0 0 30px rgba(0, 255, 102, 0.1); }
-        header { text-align: center; margin-bottom: 40px; border-bottom: 2px dashed #1e293b; padding-bottom: 30px; }
-        h1 { color: #00ff66; font-size: 2.5rem; text-shadow: 0 0 10px rgba(0, 255, 102, 0.4); letter-spacing: 2px; }
-        .version-badge { display: inline-block; padding: 4px 12px; background: rgba(0, 200, 255, 0.1); color: #00c8ff; border: 1px solid #00c8ff; border-radius: 4px; font-size: 0.85rem; margin-top: 10px; font-weight: bold; }
-        h2 { color: #00c8ff; margin: 30px 0 15px 0; border-left: 4px solid #00c8ff; padding-left: 10px; font-size: 1.4rem; }
-        h3 { color: #f1f5f9; margin-bottom: 8px; font-size: 1.1rem; }
-        p { color: #94a3b8; margin-bottom: 15px; }
-        ul { margin-left: 20px; margin-bottom: 20px; list-style-type: square; color: #94a3b8; }
-        li { margin-bottom: 8px; }
-        strong { color: #00ff66; }
-        .changelog-box { background: #0f172a; border: 1px solid #1e293b; padding: 20px; border-radius: 6px; margin-bottom: 30px; }
-        .changelog-box li { color: #cbd5e1; }
-        .btn-container { text-align: center; margin: 40px 0; }
-        .btn { display: inline-block; padding: 15px 40px; background: transparent; color: #00ff66; border: 2px solid #00ff66; font-size: 1.1rem; font-weight: bold; text-decoration: none; border-radius: 4px; box-shadow: 0 0 10px rgba(0,255,102,0.1); transition: all 0.3s ease; }
-        .btn:hover { background: #00ff66; color: #08080a; box-shadow: 0 0 30px rgba(0, 255, 102, 0.6); cursor: pointer; }
-        .warning-box { border: 1px solid #ef4444; background: rgba(239, 68, 68, 0.05); padding: 20px; border-radius: 6px; margin-top: 30px; }
-        .warning-box h2 { color: #ef4444; border-left: 4px solid #ef4444; }
-        .warning-box li { color: #fca5a5; }
-        footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 20px; }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #1a73e8; /* Google Blue */
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .version {
+            font-size: 0.9rem;
+            color: #5f6368;
+            margin-bottom: 24px;
+        }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #202124;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e8eaed;
+            padding-bottom: 8px;
+        }
+        p {
+            font-size: 1rem;
+            color: #3c4043;
+            margin-bottom: 16px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 24px;
+        }
+        li {
+            margin-bottom: 10px;
+            color: #3c4043;
+        }
+        .btn-container {
+            margin: 32px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: #1a73e8;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #1557b0;
+        }
+        .disclaimer {
+            background-color: #f8f9fa;
+            border-left: 4px solid #f44336;
+            padding: 16px;
+            margin-top: 40px;
+            border-radius: 0 4px 4px 0;
+        }
+        .disclaimer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #5f6368;
+        }
+        footer {
+            margin-top: 60px;
+            padding-top: 16px;
+            border-top: 1px solid #e8eaed;
+            font-size: 0.85rem;
+            color: #80868b;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
+    <main>
         <h1>EXTS ENGINE</h1>
-        <div class="version-badge">LATEST RELEASE V2.6</div>
-        <p style="margin-top: 15px;">A utility for both non-rooted and rooted Android devices, designed for manual and automatic hardware resource management using a smart Logic Bot.</p>
-    </header>
+        <div class="version">Android Hardware Resource Management Utility &bull; v2.6</div>
+        
+        <p>EXTS ENGINE is an optimization utility designed for both non-rooted and rooted Android environments. It utilizes an automated background service to balance hardware resource allocation based on system and user constraints.</p>
 
-    <div class="btn-container">
-        <!-- Taruh link download APK lu di href di bawah ini -->
-        <a href="https://github.com/oshsy/EXTS-ENGINE-APP/releases" class="btn">[ DOWNLOAD EXTS ENGINE V2.6 APK ]</a>
-    </div>
+        <div class="btn-container">
+            <a href="https://github.com/oshsy/EXTS-ENGINE-APP/releases" class="btn">Get Latest Release</a>
+        </div>
 
-    <h2>⚡ CHANGELOG V2.6</h2>
-    <div class="changelog-box">
+        <h2>Core Subsystems</h2>
         <ul>
-            <li><strong>New:</strong> kzsud daemon integration — standalone background layer. Tweaks continue running even if Root/Shizuku access is lost before reboot.</li>
-            <li><strong>New:</strong> Wireless ADB — Pair, connect, deploy, and start the kzsud daemon automatically.</li>
-            <li><strong>New:</strong> File Manager — Includes USB Mount (Ext4), USB GSI Bind, and built-in Code Editor.</li>
-            <li><strong>Updated:</strong> Synthetic Compositor — Added a resolution quality adjustment seekbar.</li>
-            <li><strong>Improved:</strong> Manager — Better daemon, binary, and permission management.</li>
-            <li><strong>Improved:</strong> UI/UX — Refined interface with a cleaner Splash Screen design.</li>
+            <li><strong>Automated Execution:</strong> Logic-driven profiling for whitelisted and system processes.</li>
+            <li><strong>Display Controls:</strong> Manual configurations for screen resolution and hardware refresh rates.</li>
+            <li><strong>Kernel Optimizations (Root Required):</strong> Supports thermal control adjustment, CPU frequency stabilization, and custom graphics driver routing.</li>
         </ul>
-    </div>
 
-    <h2>🚀 CORE FEATURES</h2>
-    
-    <h3>1. Performance Modes</h3>
-    <ul>
-        <li><strong>Power Saving Mode:</strong> Prioritizes battery life and lower temperatures.</li>
-        <li><strong>Daily Mode:</strong> Balanced settings for comfortable everyday use.</li>
-        <li><strong>Medium Mode:</strong> Maintains stable and balanced performance.</li>
-        <li><strong>Extreme Mode:</strong> Pushes the device beyond its normal limits for heavy workloads.</li>
-    </ul>
+        <h2>System Requirements</h2>
+        <ul>
+            <li><strong>Standard:</strong> Android 11.0 or higher. Shizuku environment is recommended for non-rooted usage.</li>
+            <li><strong>Elevated privileges:</strong> Magisk, KernelSU, or APatch environment.</li>
+        </ul>
 
-    <h3>2. Smart System Management</h3>
-    <ul>
-        <li><strong>Automatic Screen Resolution:</strong> Reduces CPU/GPU workload dynamically (especially in Extreme Mode).</li>
-        <li><strong>Logic Bot Engine:</strong> Analyzes hardware conditions and automatically boosts performance for whitelisted apps.</li>
-        <li><strong>Process Limiter & App Blocking:</strong> Restricts non-whitelisted apps and blocks blacklisted background tasks.</li>
-        <li><strong>Sensor Shutdown Mode:</strong> Disables camera, microphone, gyroscope, and compass for enhanced privacy.</li>
-    </ul>
-
-    <h3>3. Display & Graphics Controls</h3>
-    <ul>
-        <li><strong>Manual Controls:</strong> Adjust display resolution down to ultra-low settings and force custom refresh rates.</li>
-        <li><strong>Synthetic Compositor:</strong> Improves frame smoothness and visual consistency using additional RAM.</li>
-    </ul>
-
-    <h3>4. Tweaks & Hardware Controls (Root Required)</h3>
-    <ul>
-        <li><strong>Thermal Limit Removal:</strong> Removes thermal throttling restrictions.</li>
-        <li><strong>Max Hardware Force:</strong> Forces CPU and GPU frequencies to remain at their highest available levels.</li>
-    </ul>
-
-    <h2>📋 REQUIREMENTS</h2>
-    <ul>
-        <li><strong>Non-Root:</strong> Android 11.0+ with Shizuku support (recommended).</li>
-        <li><strong>Root Features:</strong> Magisk / KernelSU / APatch with root access granted.</li>
-    </ul>
-
-    <div class="warning-box">
-        <h2>⚠️ WARNING & DISCLAIMER</h2>
-        <p>Some features may increase battery consumption, elevate device temperature, or reduce hardware lifespan. The Developer is not responsible for hardware damage, overheating, data loss, or bootloops caused by the use of this application. Use at your own risk!</p>
-    </div>
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> Use at your own risk. Modifications to device thermal bounds and aggressive hardware scaling profiles may impact system stability and device thermal limits.</p>
+        </div>
+    </main>
 
     <footer>
-        Maintained by KNOZID (@oshsy) &copy; 2026 EXTS PROJECT ID.
+        &copy; 2026 OSHSY Projects. Distributed under open-source repository terms.
     </footer>
 </div>
 
 </body>
 </html>
+ 
