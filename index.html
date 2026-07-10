@@ -1,44 +1,50 @@
+
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXTS ENGINE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        [data-theme="dark"] { background-color: #000000; color: #f1f5f9; }
-        [data-theme="dark"] .glass-nav { background-color: rgba(0, 0, 0, 0.9); border-color: #1e293b; backdrop-filter: blur(12px); }
-        [data-theme="dark"] .card { background-color: #000000; border: 1px solid #1e293b; }
-        [data-theme="dark"] .card:hover { border-color: #3b82f6; }
+        .glass { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        
+        [data-theme="dark"] { background-color: #000000; color: #f8fafc; }
+        [data-theme="dark"] .glass-card { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.08); }
+        [data-theme="dark"] .glass-nav { background: rgba(0, 0, 0, 0.85); border-color: rgba(255, 255, 255, 0.08); }
         [data-theme="dark"] .text-muted { color: #94a3b8; }
-        [data-theme="dark"] .bg-subtle { background-color: #0f172a; border-color: #1e293b; }
+        [data-theme="dark"] .text-invert { color: #000000; }
+        [data-theme="dark"] .border-subtle { border-color: rgba(255, 255, 255, 0.06); }
+        [data-theme="dark"] .bg-subtle { background-color: rgba(255, 255, 255, 0.02); }
+
         [data-theme="light"] { background-color: #ffffff; color: #0f172a; }
-        [data-theme="light"] .glass-nav { background-color: rgba(255, 255, 255, 0.9); border-color: #e2e8f0; backdrop-filter: blur(12px); }
-        [data-theme="light"] .card { background-color: #ffffff; border: 1px solid #e2e8f0; }
-        [data-theme="light"] .card:hover { border-color: #3b82f6; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        [data-theme="light"] .text-muted { color: #475569; }
-        [data-theme="light"] .bg-subtle { background-color: #f8fafc; border-color: #e2e8f0; }
+        [data-theme="light"] .glass-card { background: #f8fafc; border-color: #e2e8f0; }
+        [data-theme="light"] .glass-nav { background: rgba(255, 255, 255, 0.85); border-color: #e2e8f0; }
+        [data-theme="light"] .text-muted { color: #64748b; }
+        [data-theme="light"] .text-invert { color: #ffffff; }
+        [data-theme="light"] .border-subtle { border-color: #e2e8f0; }
+        [data-theme="light"] .bg-subtle { background-color: #f1f5f9; }
     </style>
 </head>
-<body class="antialiased transition-colors duration-300" data-theme="dark">
+<body class="antialiased transition-colors duration-500" data-theme="dark">
 
-    <nav class="sticky top-0 z-50 glass-nav border-b transition-all duration-300">
+    <nav class="sticky top-0 z-50 glass glass-nav border-b transition-colors duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-md shadow-blue-500/20">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <span class="text-xl font-bold tracking-tight">EXTS ENGINE</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button id="lang-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all border card hover:bg-slate-800/50" onclick="toggleLang()">
+                    <button id="lang-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-semibold transition-all border glass-card shadow-sm" onclick="toggleLang()">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
                         <span id="lang-label">EN</span>
                     </button>
-                    <button class="p-2.5 rounded-lg transition-all border card hover:bg-slate-800/50" onclick="cycleTheme()" title="Toggle Theme">
+                    <button class="p-2.5 rounded-xl transition-all border glass-card shadow-sm" onclick="cycleTheme()" title="Toggle Theme">
                         <svg id="theme-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
                     </button>
                 </div>
@@ -46,164 +52,174 @@
         </div>
     </nav>
 
-    <section class="pt-20 pb-16">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6 text-blue-500">
-                EXTS ENGINE
-            </h1>
-            <p class="text-base sm:text-lg mb-10 max-w-2xl mx-auto leading-relaxed text-muted" data-i18n="hero_desc">
-                Utilitas performa sistem tingkat lanjut untuk lingkungan Android root dan non-root. Berjalan secara otomatis di latar belakang untuk menyeimbangkan alokasi sumber daya hardware berdasarkan batasan sistem dan aktivitas real-time.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://github.com/oshsy/EXTS-ENGINE-APP/releases" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all active:scale-95">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    <span data-i18n="download_btn">Unduh Rilis Terbaru</span>
-                </a>
-                <a href="#features" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold border card transition-all active:scale-95" data-i18n="explore_btn">Jelajahi Fitur</a>
+    <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-5xl sm:text-7xl font-black tracking-tight mb-10 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
+                    EXTS ENGINE
+                </h1>
+                <p class="text-base sm:text-lg mb-10 max-w-2xl mx-auto leading-relaxed text-muted" data-i18n="hero_desc">
+                    Advanced optimization utility designed for both non-rooted and rooted Android environments. It utilizes an automated background service to balance hardware resource allocation based on system and user constraints.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://github.com/oshsy/EXTS-ENGINE-APP/releases" class="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0">
+                        <svg class="w-5 h-5 text-invert" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <span data-i18n="download_btn">Get Latest Release</span>
+                    </a>
+                    <a href="#features" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all hover:-translate-y-0.5 active:translate-y-0" data-i18n="explore_btn">Explore Features</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="pb-16 max-w-6xl mx-auto px-4">
-        <div class="p-6 md:p-8 rounded-2xl border card">
-            <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-blue-500">
+    <section class="pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md">
+            <h3 class="text-xl font-extrabold mb-4 flex items-center gap-2 text-blue-500">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                <span data-i18n="dep_title">Lingkungan yang Didukung</span>
+                <span data-i18n="dep_title">Supported Environments</span>
             </h3>
-            <p class="text-sm text-muted mb-6" data-i18n="dep_subtitle">EXTS ENGINE mendukung pemasangan di berbagai modul lingkungan untuk mengontrol parameter sistem secara langsung.</p>
-            <div class="grid md:grid-cols-3 gap-5">
+            <p class="text-sm text-muted mb-6" data-i18n="dep_subtitle">EXTS ENGINE mendukung pemasangan di berbagai modul lingkungan untuk menembus batasan sistem non-root.</p>
+            <div class="grid md:grid-cols-3 gap-6">
                 <div class="p-5 rounded-xl bg-subtle border border-subtle">
-                    <h4 class="font-bold text-sm mb-2 text-blue-500">Wireless ADB</h4>
+                    <h4 class="font-bold text-sm mb-2 text-blue-500 dark:text-blue-400">Wireless ADB</h4>
                     <p class="text-xs text-muted leading-relaxed" data-i18n="dep_w_adb"></p>
                 </div>
                 <div class="p-5 rounded-xl bg-subtle border border-subtle">
-                    <h4 class="font-bold text-sm mb-2 text-blue-500">Shizuku Framework</h4>
+                    <h4 class="font-bold text-sm mb-2 text-cyan-500 dark:text-cyan-400">Shizuku Framework</h4>
                     <p class="text-xs text-muted leading-relaxed" data-i18n="dep_shizuku"></p>
                 </div>
                 <div class="p-5 rounded-xl bg-subtle border border-subtle">
-                    <h4 class="font-bold text-sm mb-2 text-blue-500">Root Access</h4>
+                    <h4 class="font-bold text-sm mb-2 text-emerald-500 dark:text-emerald-400">Root Access</h4>
                     <p class="text-xs text-muted leading-relaxed" data-i18n="dep_root"></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 max-w-7xl mx-auto px-4" id="features">
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="features">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-extrabold mb-2" data-i18n="f_section_title">Fitur Teknis Utama</h2>
-            <p class="text-muted text-sm max-w-2xl mx-auto" data-i18n="f_section_desc">Automasi profil berbasis logika sistem dan pengontrol hardware langsung yang digabungkan dalam satu dasbor terpadu.</p>
+            <h2 class="text-3xl font-extrabold tracking-tight mb-2" data-i18n="f_section_title">Main Features</h2>
+            <p class="text-muted text-sm max-w-xl mx-auto" data-i18n="f_section_desc">Logic-driven automated profiles and direct hardware manipulators combined under one dashboard.</p>
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="p-6 rounded-2xl border card transition-all">
-                <div class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4 text-blue-500">
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 text-blue-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 </div>
-                <h3 class="font-bold text-base mb-3" data-i18n="f_perf_title">Mode Performa</h3>
-                <ul class="space-y-3 text-sm text-muted leading-relaxed" id="f_perf_list"></ul>
+                <h3 class="font-bold text-base mb-3" data-i18n="f_perf_title">Performance Modes</h3>
+                <ul class="space-y-2 text-xs text-muted" id="f_perf_list"></ul>
             </div>
 
-            <div class="p-6 rounded-2xl border card transition-all">
-                <div class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4 text-blue-500">
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                 </div>
-                <h3 class="font-bold text-base mb-3" data-i18n="f_logic_title">Daemon Manager & Automasi</h3>
-                <ul class="space-y-3 text-sm text-muted leading-relaxed" id="f_logic_bot"></ul>
+                <h3 class="font-bold text-base mb-3" data-i18n="f_logic_title">Daemon Manager & Automation</h3>
+                <ul class="space-y-2 text-xs text-muted" id="f_logic_bot"></ul>
             </div>
 
-            <div class="p-6 rounded-2xl border card transition-all">
-                <div class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4 text-blue-500">
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 text-emerald-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
                 </div>
-                <h3 class="font-bold text-base mb-3" data-i18n="f_file_title">File Manager & Mount</h3>
-                <ul class="space-y-3 text-sm text-muted leading-relaxed" id="f_file_manager"></ul>
+                <h3 class="font-bold text-base mb-3" data-i18n="f_file_title">File Manager</h3>
+                <ul class="space-y-2 text-xs text-muted" id="f_file_manager"></ul>
             </div>
 
-            <div class="p-6 rounded-2xl border card transition-all">
-                <div class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4 text-blue-500">
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-4 text-indigo-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 </div>
-                <h3 class="font-bold text-base mb-3" data-i18n="f_monitor_title">Floating Monitor</h3>
-                <ul class="space-y-3 text-sm text-muted leading-relaxed" id="f_monitor"></ul>
+                <h3 class="font-bold text-base mb-3" data-i18n="f_monitor_title">Floating Window</h3>
+                <ul class="space-y-2 text-xs text-muted" id="f_monitor"></ul>
             </div>
 
-            <div class="p-6 rounded-2xl border card transition-all">
-                <div class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4 text-blue-500">
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 text-amber-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                 </div>
-                <h3 class="font-bold text-base mb-3" data-i18n="f_task_title">Terminal & Utilitas</h3>
-                <ul class="space-y-3 text-sm text-muted leading-relaxed" id="f_multitask"></ul>
+                <h3 class="font-bold text-base mb-3" data-i18n="f_task_title">Terminal & Floating Browser</h3>
+                <ul class="space-y-2 text-xs text-muted" id="f_multitask"></ul>
             </div>
 
-            <div class="p-6 rounded-2xl border card transition-all">
-                <div class="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mb-4 text-blue-500">
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 glass-card shadow-md transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center mb-4 text-red-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
                 </div>
-                <h3 class="font-bold text-base mb-3" data-i18n="f_disp_title">Display & Grafis Bingkai</h3>
-                <ul class="space-y-3 text-sm text-muted leading-relaxed" id="f_disp_list"></ul>
+                <h3 class="font-bold text-base mb-3" data-i18n="f_disp_title">Display & Frame Graphics</h3>
+                <ul class="space-y-2 text-xs text-muted" id="f_disp_list"></ul>
             </div>
         </div>
     </section>
 
-    <section class="py-16 bg-[#050505] border-y border-[#1e293b]">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl font-bold mb-2" data-i18n="showcase_title">📸 Showcase Antarmuka</h2>
-                <p class="text-muted text-sm" data-i18n="showcase_subtitle">Tangkapan layar asli dari tata letak dasbor aplikasi.</p>
+    <section class="py-16 bg-subtle border-y border-subtle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold tracking-tight mb-2" data-i18n="showcase_title">📸 Showcase Gallery</h2>
+                <p class="text-muted text-sm" data-i18n="showcase_subtitle">Real screenshots from continuous development lifecycles.</p>
             </div>
             
             <div class="mb-12">
-                <h3 class="text-sm font-bold mb-4 opacity-80" data-i18n="gallery_main_title">Dasbor & Fitur Aplikasi</h3>
+                <span class="text-sm font-bold block mb-4 opacity-85" data-i18n="gallery_main_title">Dashboard & App Features</span>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012429.png" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012430.png" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012431.png" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012432.png" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/user-attachments/assets/83dad5d9-a1c3-48fb-8b1c-ecb7ca0ebba8" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/user-attachments/assets/2fd37852-d7f7-4c19-95b9-918276f7bb68" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/user-attachments/assets/7df70869-99e1-4034-8c9c-137092dc84b4" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
-                    <img src="https://github.com/user-attachments/assets/09e80377-babe-4d86-a264-784125df993e" class="w-full rounded-xl border border-[#1e293b] object-cover hover:scale-105 transition-transform" alt="UI">
+                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012429.png" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 1">
+                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012430.png" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 2">
+                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012431.png" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 3">
+                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/1000012432.png" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 4">
+                    <img src="https://github.com/user-attachments/assets/83dad5d9-a1c3-48fb-8b1c-ecb7ca0ebba8" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 5">
+                    <img src="https://github.com/user-attachments/assets/2fd37852-d7f7-4c19-95b9-918276f7bb68" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 6">
+                    <img src="https://github.com/user-attachments/assets/7df70869-99e1-4034-8c9c-137092dc84b4" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 7">
+                    <img src="https://github.com/user-attachments/assets/09e80377-babe-4d86-a264-784125df993e" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 8">
+                    <img src="https://github.com/user-attachments/assets/7724e00b-7f46-4543-ad1a-4fc76c687d1d" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 9">
+                    <img src="https://github.com/user-attachments/assets/5dd0f5d3-94aa-4dad-b6ed-8a4d50240526" class="w-full rounded-xl border border-subtle shadow-sm object-cover hover:scale-105 transition-transform" alt="UI 10">
+                    <img src="https://github.com/user-attachments/assets/e7b2d329-8c4d-4104-9a64-70f8a7a1caca" class="rounded-xl border border-subtle shadow-sm hover:scale-105 transition-transform" alt="Set">
+                    <img src="https://github.com/user-attachments/assets/79d6921d-bdaf-4346-b9ab-24c927fee8c6" class="rounded-xl border border-subtle shadow-sm hover:scale-105 transition-transform" alt="Set2">
+                    <img src="https://github.com/user-attachments/assets/8d42df11-a83c-4e80-9139-70a77c7d4756" class="rounded-xl border border-subtle shadow-sm hover:scale-105 transition-transform" alt="Set3">
+                    <img src="https://github.com/user-attachments/assets/95cd568f-59b7-49f3-a457-d84b86c5dfba" class="rounded-xl border border-subtle shadow-sm hover:scale-105 transition-transform" alt="Set4">
+                    <img src="https://github.com/user-attachments/assets/cabe758b-5560-49f3-a017-6f6aa3ce6911" class="rounded-xl border border-subtle shadow-sm hover:scale-105 transition-transform" alt="Set5">
+                    <img src="https://github.com/user-attachments/assets/bf7750f5-d069-48b3-89a9-54997598637e" class="rounded-xl border border-subtle shadow-sm hover:scale-105 transition-transform" alt="Set6">
                 </div>
             </div>
 
-            <div class="pt-6 border-t border-[#1e293b]">
-                <h3 class="text-sm font-bold mb-4 opacity-80" data-i18n="guide_header">🤔 Panduan Sistem</h3>
+            <div class="border-t border-subtle pt-8 mt-8">
+                <h3 class="text-lg font-bold mb-4" data-i18n="guide_header">🤔 System Guides</h3>
                 <div class="grid md:grid-cols-2 gap-4">
-                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/f928a752-532b-4b2f-9c17-bf80025335e2.png" class="w-full rounded-xl border border-[#1e293b]" alt="Guide 1">
-                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/31e48ea0-82df-4b3e-94a4-9a4752320a98.png" class="w-full rounded-xl border border-[#1e293b]" alt="Guide 2">
+                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/f928a752-532b-4b2f-9c17-bf80025335e2.png" class="w-full rounded-xl border border-subtle shadow-md" alt="Guide 1">
+                    <img src="https://github.com/oshsy/EXTS-ENGINE-APP/raw/main/screenshots/31e48ea0-82df-4b3e-94a4-9a4752320a98.png" class="w-full rounded-xl border border-subtle shadow-md" alt="Guide 2">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 max-w-4xl mx-auto px-4">
-        <div class="p-6 rounded-2xl border border-red-900/50 bg-red-950/20">
-            <h3 class="text-base font-bold text-red-500 mb-3 flex items-center gap-2">
+    <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="p-6 rounded-2xl border-l-4 border-red-500 bg-red-500/5 backdrop-blur-sm shadow-md">
+            <h3 class="text-lg font-extrabold text-red-500 mb-3 flex items-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                <span data-i18n="warning_title">Pemberitahuan Developer & Penafian Keamanan</span>
+                <span data-i18n="warning_title">Developer Notice & Safety Disclaimer</span>
             </h3>
-            <p class="text-sm text-muted leading-relaxed mb-3" data-i18n="w_p1">Developer tidak bertanggung jawab atas segala jenis kerusakan hardware, overheat, kehilangan data, ketidakstabilan sistem, atau bootloop yang disebabkan oleh eksekusi parameter dari aplikasi ini.</p>
-            <p class="text-sm text-muted leading-relaxed" data-i18n="w_p2">Fitur agresif seperti Extreme Mode, Thermal Limit Removal, dan High Performance Mode dapat meningkatkan suhu dan tekanan hardware secara signifikan. Pantau konfigurasi termal Anda secara berkala.</p>
+            <p class="text-sm text-muted leading-relaxed mb-4" data-i18n="w_p1">The Developer is not responsible for hardware damage, overheating, data loss, system instability, or bootloops caused by the use of this application.</p>
+            <p class="text-sm text-muted leading-relaxed" data-i18n="w_p2">Features such as Extreme Mode, Thermal Limit Removal, High Performance CPU Mode, and High Performance GPU Mode may significantly increase power consumption, temperature, and hardware stress. Use entirely at your own risk. Monitor your thermal configurations continuously.</p>
         </div>
     </section>
 
-    <footer class="border-t border-[#1e293b] py-10 text-sm text-muted">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2 font-bold text-gray-300">
+    <footer class="border-t border-subtle py-12 text-sm text-muted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
                 <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                <span>EXTS ENGINE &bull; 2026</span>
+                <span class="font-bold tracking-tight text-slate-900 dark:text-slate-100">EXTS ENGINE &bull; 2026</span>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-6">
-                <span>Maintained by <strong>RZD PROJECT ID</strong></span>
-                <a href="https://github.com/oshsy" target="_blank" class="hover:text-blue-500 transition-colors">@oshsy</a>
-                <a href="https://sociabuzz.com/rzd_project_id/tribe" target="_blank" class="text-orange-500 font-bold hover:underline">☕ Buy me a coffee</a>
+                <span>Maintained by <strong>KNOZID</strong></span>
+                <a href="https://github.com/oshsy" target="_blank" class="hover:text-blue-500 transition-colors flex items-center gap-1">@oshsy</a>
+                <a href="https://sociabuzz.com/rzd_project_id/tribe" target="_blank" class="text-orange-400 font-bold hover:underline">☕ Buy me a coffee</a>
             </div>
         </div>
     </footer>
 
     <script>
-    const themes = ['dark', 'light'];
-    let themeIndex = 0; 
+    const themes = ['light', 'dark'];
+    let themeIndex = 1; 
     let currentLang = 'en';
 
     const i18n = {
@@ -212,23 +228,30 @@
             download_btn: "Get Latest Release", explore_btn: "Explore Features",
             dep_title: "Supported Environments", 
             dep_subtitle: "EXTS ENGINE handles setup natively through multiple environments, breaking boundaries for non-rooted configurations.",
-            dep_w_adb: "Pair, connect, deploy, and initialize the main background daemon manager automatically. Runs independently without requiring Shizuku when wireless debugging is active.",
+            dep_w_adb: "Pair, connect, deploy, and initialize the main background daemon manager automatically. Runs completely independent without requiring Shizuku frameworks whenever wireless debugging is active.",
             dep_shizuku: "Recommended framework system layer for standard non-rooted configurations. Executes commands via isolated process buffers safely.",
             dep_root: "Compatible with Magisk, KernelSU, and APatch environments. Unlocks raw low-level kernel scaling interfaces directly.",
             f_section_title: "Main Features", 
-            f_section_desc: "Logic-driven automated profiles and direct hardware manipulators combined under one unified dashboard.",
+            f_section_desc: "Logic-driven automated profiles and direct hardware manipulators combined under one dashboard.",
+            
             f_perf_title: "Performance Modes",
             f_perf_list: "<li>• <strong>Daily Mode:</strong> Optimize performance for stable daily usage.</li><li>• <strong>Medium Mode:</strong> Balanced adjustments for smooth multitasking.</li><li>• <strong>Extreme Mode:</strong> Unlock maximum hardware potential for peak gaming performance.</li><li>• <strong>Power Saving Mode:</strong> Reduce power consumption and extend battery life.</li>",
+            
             f_logic_title: "Daemon Manager & Automation",
             f_logic_bot: "<li>• <strong>Background Daemon Manager:</strong> Central hub receiving commands from the Java UI—significantly cutting RAM consumption by cutting out unnecessary shell manager loops (UID 2000).</li><li>• <strong>Automated System Management:</strong> Advanced logic to manage system hardware resources safely and optimally.</li><li>• <strong>Background Application Limiter:</strong> Restrict background activity for non-whitelisted applications to maintain system focus.</li><li>• <strong>Hardware Sensor Shutdown:</strong> Disables cameras, internal mics, and gyro scopes completely for high privacy protection.</li>",
+            
             f_file_title: "File Manager",
-            f_file_manager: "<li>• <strong>USB GSI Bind (Root Only):</strong> Allows apps and games to read data directly from an external ext4 USB storage device. Strictly for GSI-based virtualized systems.</li><li>• <strong>USB Mount (Ext4):</strong> Native storage mount interface for reading external Linux ext4 storage blocks.</li><li>• <strong>Integrated File Utilities:</strong> View logs, edit shell parameters, or JSON configuration tables inside the integrated editor.</li>",
+            f_file_manager: "<li>• <strong>USB GSI Bind (Root Only):</strong> Allows apps and games to read data directly from an external ext4 USB storage device. Strictly for GSI-based virtualized systems; not recommended for Stock ROMs.</li><li>• <strong>USB Mount (Ext4):</strong> Native storage mount interface for reading external Linux ext4 storage blocks.</li><li>• <strong>Integrated File Utilities:</strong> View logs, edit shell parameters, or JSON configuration tables inside the integrated editor.</li>",
+            
             f_monitor_title: "Floating Window",
-            f_monitor: "<li>• <strong>Deep Monitor Overlay:</strong> A single standalone floating panel tracking live FPS counts, CPU load graphs, and GPU core frequencies simultaneously.</li><li>• <strong>Anti-Stuck FPS Counter:</strong> Prevent FPS metrics from freezing at 0 due to system MediaProjector display layout bugs.</li><li>• <strong>Refresh Rate Lock:</strong> Force and lock display panel Hz settings to bypass dynamic engine throttling limits.</li>",
+            f_monitor: "<li>• <strong>Deep Monitor Overlay:</strong> A single compact standalone floating panel tracking live FPS counts, CPU load graphs, and GPU core frequencies simultaneously.</li><li>• <strong>Anti-Stuck FPS Counter:</strong> Prevent FPS metrics from freezing at 0 due to system MediaProjector display layout bugs.</li><li>• <strong>Refresh Rate Lock:</strong> Force and lock display panel Hz settings to bypass dynamic engine throttling limits.</li>",
+            
             f_task_title: "Terminal & Floating Browser",
             f_multitask: "<li>• <strong>Floating Web Browser:</strong> Full multitask desktop panel allowing URL entries and web searches directly over operational software views.</li><li>• <strong>App Freezer:</strong> Freeze background apps completely to eliminate ambient processing lag.</li><li>• <strong>Blacklist Filter:</strong> Prevent restricted apps from spawning background processes.</li><li>• <strong>Bloatware Remover:</strong> Instantly strip away unneeded system packages and clean general junk files.</li><li>• <strong>Terminal:</strong> Integrated console execution panel with automated confirmation prompts.</li>",
+            
             f_disp_title: "Display & Frame Graphics",
             f_disp_list: "<li>• <strong>Synthetic Compositor:</strong> Internal visual frame interpolation service layer simulating fluid transition motion. (Note: Induces heavy input latency; not recommended for competitive gaming).</li><li>• <strong>Dynamic Resolution Scaling:</strong> Automated resolution scaling based on the currently active whitelisted application.</li><li>• <strong>Resolution Downscaling:</strong> Lower rendering parameters to drop GPU loads and maintain thermal health.</li><li>• <strong>Graphics Driver Manager:</strong> Explicitly choose system graphics driver layers (e.g., DRIVER ANGLE) per target app.</li><li>• <strong>Hardware Performance Overrides:</strong> Force high performance CPU/GPU constraints and lock clock parameters.</li>",
+            
             showcase_title: "📸 Showcase Gallery", showcase_subtitle: "Real screenshots from continuous development lifecycles.",
             gallery_main_title: "Dashboard & App Features",
             guide_header: "🤔 System Guides",
@@ -239,28 +262,35 @@
         id: {
             hero_desc: "Utility optimasi tingkat lanjut yang dirancang untuk lingkungan Android non-root maupun root. Berjalan di latar belakang secara otomatis untuk menyeimbangkan alokasi resource hardware berdasarkan aktivitas pengguna secara real-time.",
             download_btn: "Unduh Rilis Terbaru", explore_btn: "Jelajahi Fitur",
-            dep_title: "Lingkungan yang Didukung", 
+            dep_title: "Supported Environments", 
             dep_subtitle: "EXTS ENGINE mendukung pemasangan di berbagai modul lingkungan untuk menembus batasan sistem non-root.",
             dep_w_adb: "Pair, connect, deploy, dan aktifkan layanan daemon latar belakang utama secara otomatis. Berjalan mandiri tanpa perlu framework Shizuku selama fitur Wireless Debugging aktif.",
             dep_shizuku: "Rekomendasi metode penyiapan untuk user non-root. Mengeksekusi perintah tweak via buffer proses terisolasi dengan aman.",
             dep_root: "Kompatibel penuh dengan lingkungan Magisk, KernelSU, dan APatch. Membuka akses kontrol penskalaan kernel tingkat rendah secara langsung.",
-            f_section_title: "Fitur Teknis Utama", 
+            f_section_title: "Main Features", 
             f_section_desc: "Automasi profil berbasis sistem cerdas dan pengontrol hardware langsung yang digabungkan dalam satu dasbor terpadu.",
-            f_perf_title: "Mode Performa",
+            
+            f_perf_title: "Performance Modes",
             f_perf_list: "<li>• <strong>Mode Harian:</strong> Optimalkan performa untuk penggunaan harian yang stabil.</li><li>• <strong>Mode Sedang:</strong> Penyesuaian seimbang untuk multitasking yang lancar.</li><li>• <strong>Mode Ekstrem:</strong> Buka potensi maksimal hardware untuk performa puncak.</li><li>• <strong>Mode Hemat Daya:</strong> Kurangi konsumsi daya dan perpanjang masa pakai baterai.</li>",
-            f_logic_title: "Daemon Manager & Automasi",
+            
+            f_logic_title: "Daemon Manager & Automation",
             f_logic_bot: "<li>• <strong>Background Daemon Manager:</strong> Jembatan eksekusi latar belakang utama dari Java UI—jauh lebih hemat RAM karena memotong overhead pemanggilan manager shell konvensional (UID 2000).</li><li>• <strong>Otomatis Kelola Sistem:</strong> Logika AI tingkat lanjut untuk mengelola sumber daya sistem dengan optimal dan aman.</li><li>• <strong>Batasi Aplikasi Latar Belakang:</strong> Batasi aktivitas latar belakang untuk aplikasi non-whitelist demi menjaga performa tetap fokus.</li><li>• <strong>Nonaktifkan Sistem Sensor:</strong> Nonaktifkan sensor hardware (Mik, Kamera, Gyro) sepenuhnya untuk privasi tingkat tinggi.</li>",
-            f_file_title: "File Manager & Mount",
+            
+            f_file_title: "File Manager",
             f_file_manager: "<li>• <strong>USB GSI Bind (Khusus Root):</strong> Membuat game atau aplikasi membaca data aset dari USB eksternal ext4. Khusus untuk lingkungan GSI/DSU (tidak disarankan untuk Stock ROM).</li><li>• <strong>USB Mount (Ext4):</strong> Mendukung mounting penyimpanan eksternal berformat Linux ext4 secara native ke sistem Android.</li><li>• <strong>Editor Teks & Script:</strong> Edit baris perintah shell, modifikasi berkas JSON, atau teks langsung lewat viewer aplikasi.</li>",
-            f_monitor_title: "Floating Monitor",
+            
+            f_monitor_title: "Floating Window",
             f_monitor: "<li>• <strong>Deep Monitor Overlay:</strong> Panel jendela mengambang untuk pemantauan FPS, Grafik Beban CPU, dan Frekuensi GPU secara real-time.</li><li>• <strong>Anti-Stuck FPS Counter:</strong> Mencegah angka FPS membeku di nilai 0 akibat conflict dengan modul MediaProjector bawaan OS.</li><li>• <strong>Paksa Refresh Rate:</strong> Kunci Hz layar untuk mencegah throttling dinamis demi kehalusan visual konstan.</li>",
-            f_task_title: "Terminal & Utilitas",
+            
+            f_task_title: "Terminal & Floating Browser",
             f_multitask: "<li>• <strong>Floating Web Browser:</strong> Akses mesin peramban web mengambang untuk browsing atau cari URL langsung tanpa keluar dari layar permainan.</li><li>• <strong>Bekukan Aplikasi:</strong> Bekukan aplikasi sepenuhnya untuk menghilangkan lag latar belakang secara total.</li><li>• <strong>Blokir Aplikasi Daftar Hitam:</strong> Cegah aplikasi blacklist berjalan atau memicu proses di latar belakang.</li><li>• <strong>Hapus Bloatware:</strong> Hapus bloatware sistem dengan cepat, bersihkan sampah, dan kelola target blacklist/whitelist.</li><li>• <strong>Shell Command Terminal:</strong> Konsol shell internal yang dilengkapi dengan pengaman konfirmasi otomatis untuk blok perintah kritis.</li>",
-            f_disp_title: "Display & Grafis Bingkai",
+            
+            f_disp_title: "Display & Frame Graphics",
             f_disp_list: "<li>• <strong>Kompositor Sintetis:</strong> Mesin interpolasi frame untuk mensimulasikan gerak yang lebih lancar. (Catatan: Menyebabkan latensi input berat; tidak disarankan untuk game kompetitif).</li><li>• <strong>Otomatis Ubah Resolusi:</strong> Sesuaikan resolusi rendering layar secara otomatis berdasarkan aplikasi yang sedang aktif dibuka.</li><li>• <strong>Menurunkan Resolusi Screen:</strong> Memperkecil resolusi rendering untuk mengurangi beban GPU dan menjaga stabilitas suhu demi performa gaming.</li><li>• <strong>Pengelola Driver Grafis:</strong> Bebas pilih driver GPU tertentu (seperti driver ANGLE) untuk stabilitas sistem yang jauh lebih baik.</li><li>• <strong>Kontrol Performa Ekstrem (Root):</strong> Modus paksa CPU/GPU ke frekuensi tertinggi dan mematikan pembatasan suhu thermal.</li>",
-            showcase_title: "📸 Showcase Antarmuka", showcase_subtitle: "Tangkapan layar asli dari tata letak dasbor aplikasi selama siklus pengembangan aktif.",
-            gallery_main_title: "Dasbor & Fitur Aplikasi",
-            guide_header: "🤔 Panduan Sistem",
+            
+            showcase_title: "📸 Showcase Gallery", showcase_subtitle: "Tangkapan layar asli dari tata letak dasbor aplikasi selama siklus pengembangan aktif.",
+            gallery_main_title: "Dashboard & App Features",
+            guide_header: "🤔 System Guides",
             warning_title: "Pemberitahuan Developer & Penafian Keamanan",
             w_p1: "Developer tidak bertanggung jawab atas segala jenis kerusakan hardware, overheat, kehilangan data, ketidakstabilan sistem, atau bootloop yang disebabkan oleh penggunaan aplikasi ini.",
             w_p2: "Fitur agresif seperti Extreme Mode, Thermal Limit Removal, High Performance CPU Mode, dan High Performance GPU Mode dapat meningkatkan konsumsi daya baterai, suhu, dan tekanan hardware secara signifikan. Gunakan sepenuhnya dengan risiko Anda sendiri."
@@ -290,6 +320,7 @@
                 el.innerHTML = i18n[currentLang][key];
             }
         });
+        
         document.getElementById('f_perf_list').innerHTML = i18n[currentLang].f_perf_list;
         document.getElementById('f_logic_bot').innerHTML = i18n[currentLang].f_logic_bot;
         document.getElementById('f_file_manager').innerHTML = i18n[currentLang].f_file_manager;
@@ -304,8 +335,12 @@
     }
 
     (function initLocale() {
-        const sysLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase().split('-')[0];
-        currentLang = i18n[sysLang] ? sysLang : 'en';
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang && browserLang.toLowerCase().startsWith('id')) {
+            currentLang = 'id';
+        } else {
+            currentLang = 'en';
+        }
         updateLanguageDOM();
         applyTheme(themes[themeIndex]);
     })();
